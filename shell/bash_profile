@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH";
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+# * ~/.extra can be used for other settings you don’t want to commit.
+
+declare -a FILES_TO_SOURCE=(
+	"bash_aliases"
+	"bash_autocompletion"
+	"bash_exports"
+	"bash_functions"
+	"bash_options"
+	"bash_prompt"
+	"bash.local"	# For local settings that should
+					# not be under version control.
+	)
+
+for file in $HOME/.${!FILES_TO_SOURCE[*]}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+
+unset file;
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

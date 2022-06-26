@@ -1,0 +1,96 @@
+#!/bin/bash
+
+# Bash Variables.
+# https://www.gnu.org/software/bash/manual/html_node/Bash-Variables.html
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Stop the macOS Terminal from showing a warning
+# message when Zsh is not the default shell.
+#
+# https://support.apple.com/en-us/HT208050
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Make `vscode` the default editor
+
+export EDITOR="code --wait"
+export GIT_EDITOR="$EDITOR"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Link Homebrew casks in `/Applications` rather than `~/Applications`
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Ignore commands that start with spaces and duplicates.
+
+export HISTCONTROL=ignoreboth
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Increase the maximum number of lines of history
+# persisted in the history file (default value is 500).
+
+export HISTFILESIZE=10000
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Don't add certain commands to the history file.
+
+export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Use custom `less` colors for `man` pages.
+
+export LESS_TERMCAP_md="$(tput bold 2> /dev/null; tput setaf 2 2> /dev/null)"
+export LESS_TERMCAP_me="$(tput sgr0 2> /dev/null)"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Don't clear the screen after quitting a `man` page.
+
+export MANPAGER="less -X"
+
+# Highlight section titles in manual pages
+
+
+export LESS_TERMCAP_md="$ORANGE"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# If not set, make new shells get the history lines from all previous
+# shells instead of the default "last window closed" history.
+
+if ! printf "%s" "$PROMPT_COMMAND" | grep "history -a" &> /dev/null; then
+    export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+fi
+
+# Remove `update_terminal_cwd` from the `PROMPT_COMMAND`
+# environment variable if it doesn't exist in the current shell.
+#
+# On macOS `update_terminal_cwd` is added to the `PROMPT_COMMAND`
+# environment variable however, `/etc/bashrc_Apple_Terminal`
+# that contains the shell function definition is only executed
+# for `Terminal.app`. Other terminals (e.g.: VS Code's terminal)
+# will not have the shell function, hence, they will show the
+#
+#    bash: update_terminal_cwd: command not found
+#
+# error everytime the prompt is displayed.
+
+if  printf "%s" "$PROMPT_COMMAND" | grep "update_terminal_cwd" &> /dev/null &&
+    ! command -v update_terminal_cwd &> /dev/null; then
+    export PROMPT_COMMAND="$(printf "%s" "$PROMPT_COMMAND" | sed 's/\(.*\)update_terminal_cwd;*\(.*\)/\1\2/g')"
+fi
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Avoid issues with `gpg` as installed via Homebrew.
+# https://stackoverflow.com/a/42265848/96656
+
+export GPG_TTY=$(tty);

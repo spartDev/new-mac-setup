@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Bash options.
+# https://www.gnu.org/software/bash/manual/bashref.html#The-Shopt-Builtin
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Automatically prepend `cd` to directory names.
+
+shopt -s autocd
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Autocorrect typos in path names when using the `cd` command.
+
+shopt -s cdspell
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Check the window size after each command and, if necessary, update
+# the values of `LINES` and `COLUMNS`.
+
+shopt -s checkwinsize
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Save all lines of a multiple-line command in the same history entry.
+
+shopt -s cmdhist
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Include filenames beginning with a "." in the filename expansion.
+
+shopt -s dotglob
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Do not attempt to search the PATH for possible completions when
+# completion is attempted on an empty line.
+
+shopt -s no_empty_cmd_completion
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+  shopt -s "$option" 2> /dev/null;
+done;
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Match filenames in a case-insensitive fashion when performing
+# filename expansion.
+
+shopt -s nocaseglob
