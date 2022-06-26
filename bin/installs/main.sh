@@ -11,18 +11,18 @@ print_in_purple "\n • Installs\n\n"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-./xcode.sh
-./homebrew.sh
-./bash.sh
+bash ./xcode.sh
+bash ./homebrew.sh
+bash ./bash.sh
 
-./git.sh
-./node.sh
-./browsers.sh
-./compression_tools.sh
-./gpg.sh
-./image_tools.sh
-./misc.sh
-./npm.sh
-./vscode.sh
-./web_font°tools.sh
-./web_font.sh
+bash ./git.sh
+bash ./node.sh
+bash ./browsers.sh
+bash ./compression_tools.sh
+bash ./gpg.sh
+bash ./image_tools.sh
+bash ./misc.sh
+bash ./npm.sh
+bash ./vscode.sh
+bash ./web_font°tools.sh
+bash ./web_font.sh

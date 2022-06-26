@@ -232,36 +232,36 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./bin/create_directories.sh
+    bash ./bin/create_directories.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./bin/create_symbolic_links.sh "$@"
+    bash ./bin/create_symbolic_links.sh "$@"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./bin/create_local_config_files.sh
+    bash ./bin/create_local_config_files.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./bin/installs/main.sh
+    bash ./bin/installs/main.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./bin/preferences/main.sh
+    bash ./bin/preferences/main.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if cmd_exists "git"; then
 
         if [ "$(git config --get remote.origin.url)" != "$DOTFILES_ORIGIN" ]; then
-            ./bin/initialize_git_repository.sh "$DOTFILES_ORIGIN"
+            bash ./bin/initialize_git_repository.sh "$DOTFILES_ORIGIN"
         fi
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
         if ! $skipQuestions; then
-            ./bin/update_content.sh
+            bash ./bin/update_content.sh
         fi
 
     fi
@@ -269,7 +269,7 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     if ! $skipQuestions; then
-        ./bin/restart.sh
+        bash ./bin/restart.sh
     fi
 
 }
