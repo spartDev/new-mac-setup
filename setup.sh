@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euoE pipefail
-
 declare -r GITHUB_REPOSITORY="spartDev/new-mac-setup"
 
 declare -r DOTFILES_ORIGIN="git@github.com:$GITHUB_REPOSITORY.git"
