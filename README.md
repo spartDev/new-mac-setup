@@ -13,7 +13,7 @@ This repository serves me to setup and maintain my Mac. It takes the effort out 
 ## Setup
 
 To set up the dotfiles run this snippet in the terminal:
-`bash -c "$(curl -LsS https://raw.github.com/spartDev/dotfiles/main/setup.sh)"`
+`bash -c "$(curl -LsS https://raw.github.com/spartDev/new-mac-setup/main/setup.sh)"`
 
 The setup process will:
 
