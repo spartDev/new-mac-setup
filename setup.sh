@@ -2,4 +2,6 @@
 
 export TERM=xterm-256color
 
-bash ./bin/main.sh
+echo "$PWD"
+
+# bash ./bin/main.sh
