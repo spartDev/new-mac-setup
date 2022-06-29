@@ -1,5 +1,4 @@
-
-#!/usr/bin/env bash
+#!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../utils.sh" \
@@ -11,18 +10,18 @@ print_in_purple "\n • Installs\n\n"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-bash ./xcode.sh
-bash ./homebrew.sh
-bash ./bash.sh
+source ./xcode.sh
+source ./homebrew.sh
+source ./bash.sh
 
-bash ./git.sh
-bash ./node.sh
-bash ./browsers.sh
-bash ./compression_tools.sh
-bash ./gpg.sh
-bash ./image_tools.sh
-bash ./misc.sh
-bash ./npm.sh
-bash ./vscode.sh
-bash ./web_font°tools.sh
-bash ./web_font.sh
+source ./git.sh
+source ./node.sh
+source ./browsers.sh
+source ./compression_tools.sh
+source ./gpg.sh
+source ./image_tools.sh
+source ./misc.sh
+source ./npm.sh
+source ./vscode.sh
+source ./web_font_tools.sh
+source ./web_font.sh
