@@ -2,7 +2,7 @@
 
 declare -r GITHUB_REPOSITORY="spartDev/new-mac-setup"
 
-declare -r DOTFILES_ORIGIN="git@github.com:$GITHUB_REPOSITORY.git"
+declare -r DOTFILES_ORIGIN="https://github.com/$GITHUB_REPOSITORY.git"
 declare -r DOTFILES_TARBALL_URL="https://github.com/$GITHUB_REPOSITORY/tarball/main"
 declare -r DOTFILES_UTILS_URL="https://raw.githubusercontent.com/$GITHUB_REPOSITORY/main/bin/utils.sh"
 
@@ -64,13 +64,13 @@ download_dotfiles() {
 
     if [ ! -d "$DOTFILES_DIRECTORY" ]; then
         execute \
-            "git clone --quiet --recurse-submodules -j8 $DOTFILES_ORIGIN $DOTFILES_DIRECTORY" "Cloning in '$DOTFILES_DIRECTORY'"
+            "git clone --quiet $DOTFILES_ORIGIN $DOTFILES_DIRECTORY" "Cloning in '$DOTFILES_DIRECTORY'"
     else
         ask_for_confirmation "'$DOTFILES_DIRECTORY' already exists, do you want to delete it?"
         if answer_is_yes; then
             rm -Rf $DOTFILES_DIRECTORY
             execute \
-                "git clone --quiet --recurse-submodules -j8 $DOTFILES_ORIGIN $DOTFILES_DIRECTORY" "Cloning in '$DOTFILES_DIRECTORY'"
+                "git clone --quiet $DOTFILES_ORIGIN $DOTFILES_DIRECTORY" "Cloning in '$DOTFILES_DIRECTORY'"
         fi
     fi
 
